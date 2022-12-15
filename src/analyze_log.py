@@ -4,7 +4,11 @@ import csv
 def analyze_log(path_to_file):
     data = read(path_to_file)
     most_ordered_maria = maria_most_ordered(data)
-    return most_ordered_maria
+    arnaldo_hamburguer = arnaldo_ordered_hamburguer(data)
+
+    return f"""\
+        {most_ordered_maria}
+        {arnaldo_hamburguer}"""
 
 
 def read(path_to_file):
@@ -35,7 +39,13 @@ def maria_most_ordered(data):
 
 
 def arnaldo_ordered_hamburguer(data):
-    ...
+    count = 0
+
+    for order in data:
+        if order["customer"] == 'arnaldo' and order["order"] == 'hamburguer':
+            count += 1
+
+    return count
 
 
 def joao_never_tasted(data):
