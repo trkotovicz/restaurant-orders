@@ -8,16 +8,20 @@ def analyze_log(path_to_file):
     joao_not_ordered = joao_never_tasted(data)
     joao_not_go = joao_never_went(data)
 
-    return f"""\
-        {most_ordered_maria}
-        {arnaldo_hamburguer}
-        {joao_not_ordered}
-        {joao_not_go}"""
+    campaign_result = (
+        f"{most_ordered_maria}\n"
+        f"{arnaldo_hamburguer}\n"
+        f"{joao_not_ordered}\n"
+        f"{joao_not_go}\n"
+    )
+
+    with open('data/mkt_campaign.txt', 'w') as file:
+        file.write(campaign_result)
 
 
 def read(path_to_file):
     if not path_to_file.endswith('.csv'):
-        raise ValueError(f"Extensão inválida: '{path_to_file}'")
+        raise FileNotFoundError(f"Extensão inválida: '{path_to_file}'")
 
     try:
         with open(path_to_file, 'r') as file:
