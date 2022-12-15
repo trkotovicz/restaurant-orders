@@ -12,7 +12,16 @@ class TrackOrders:
         )
 
     def get_most_ordered_dish_per_customer(self, customer):
-        pass
+        frequency = {}
+
+        for order in self._data:
+            if order["customer"] == customer:
+                if order["order"] not in frequency:
+                    frequency[order["order"]] = 1
+                else:
+                    frequency[order["order"]] += 1
+
+        return max(frequency, key=frequency.get)
 
     def get_never_ordered_per_customer(self, customer):
         pass
